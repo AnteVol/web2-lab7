@@ -1,17 +1,18 @@
 const CACHE_NAME = 'qr-scanner-v1';
-const ASSETS = [
+const urlsToCache = [
     '/',
     '/index.html',
+    '/css/styles.css',
+    '/js/app.js',
     '/manifest.json',
-    '/icons/icon-192x192.png',
-    '/icons/icon-512x512.png',
-    'https://cdnjs.cloudflare.com/ajax/libs/qr-scanner/1.4.2/qr-scanner.umd.min.js'
+    'https://cdnjs.cloudflare.com/ajax/libs/qr-scanner/1.4.2/qr-scanner.umd.min.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/qr-scanner/1.4.2/qr-scanner.worker.min.js'
 ];
 
 self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(CACHE_NAME)
-            .then(cache => cache.addAll(ASSETS))
+            .then(cache => cache.addAll(urlsToCache))
     );
 });
 

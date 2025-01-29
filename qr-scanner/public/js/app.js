@@ -87,8 +87,6 @@ function drawToCanvas() {
 // Pokretanje skenera
 async function startScanner() {
     try {
-        QrScanner.WORKER_PATH = './qr-scanner-worker.min.js';
-        
         qrScanner = new QrScanner(
             video,
             result => {
