@@ -7,8 +7,8 @@ const urlsToCache = [
     '/manifest.json',
     '/icons/icon-192x192.png',
     '/favicon.ico',
-    'https://cdnjs.cloudflare.com/ajax/libs/qr-scanner/1.4.2/qr-scanner.umd.min.js',
-    'https://cdnjs.cloudflare.com/ajax/libs/qr-scanner/1.4.2/qr-scanner-worker.min.js'
+    '/js/qr-scanner.umd.min.js',
+    '/js/qr-scanner-worker.min.js',
 ];
 
 self.addEventListener('install', event => {
