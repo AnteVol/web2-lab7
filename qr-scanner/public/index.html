@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Skener</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#4A90E2">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>QR Skener</h1>
+        <div id="offlineMessage" class="offline-message">
+            Radite offline - skeniranje nije dostupno
+        </div>
+        <button id="startButton">Pokreni kameru</button>
+        <button id="stopButton" disabled>Zaustavi kameru</button>
+        <video id="videoElement" playsinline></video>
+        <canvas id="canvas"></canvas>
+        <div id="scannedCodes"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qr-scanner/1.4.2/qr-scanner.umd.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
