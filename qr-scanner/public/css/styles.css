@@ -22,13 +22,6 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-canvas {
-    display: none;
-    margin: 20px auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
 button {
     background: #4A90E2;
     color: white;

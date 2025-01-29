@@ -15,8 +15,7 @@ const video = document.getElementById('videoElement');
 const scannedCodes = document.getElementById('scannedCodes');
 const offlineMessage = document.getElementById('offlineMessage');
 
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
+
 let animationId = null;
 
 // Provjera online/offline statusa
@@ -70,19 +69,7 @@ async function registerSync() {
     }
 }
 
-function drawToCanvas() {
-    console.log('Drawing to canvas...', video.videoWidth, video.videoHeight);
-    if (video.videoWidth === 0 || video.videoHeight === 0) {
-        console.log('Video dimensions not ready yet');
-        animationId = requestAnimationFrame(drawToCanvas);
-        return;
-    }
-    
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-    animationId = requestAnimationFrame(drawToCanvas);
-}
+
 
 // Pokretanje skenera
 async function startScanner() {
@@ -95,7 +82,8 @@ async function startScanner() {
             { 
                 returnDetailedScanResult: true,
                 highlightScanRegion: true,
-                highlightCodeOutline: true
+                highlightCodeOutline: true,
+                workerPath: 'https://cdnjs.cloudflare.com/ajax/libs/qr-scanner/1.4.2/qr-scanner-worker.min.js'
             }
         );
         
@@ -109,12 +97,6 @@ async function startScanner() {
 
         video.addEventListener('play', () => {
             console.log('Video started playing');
-            video.style.display = 'none';
-            canvas.style.display = 'block';
-            canvas.style.width = '100%';
-            canvas.style.maxWidth = '600px';
-            canvas.style.height = 'auto';
-            drawToCanvas();
         });
 
         startButton.disabled = true;
@@ -132,7 +114,6 @@ function stopScanner() {
             cancelAnimationFrame(animationId);
             animationId = null;
         }
-        canvas.style.display = 'none';
         startButton.disabled = false;
         stopButton.disabled = true;
     }
