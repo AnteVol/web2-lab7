@@ -5,8 +5,10 @@ const urlsToCache = [
     '/css/styles.css',
     '/js/app.js',
     '/manifest.json',
+    '/icons/icon-192x192.png',
+    '/favicon.ico',
     'https://cdnjs.cloudflare.com/ajax/libs/qr-scanner/1.4.2/qr-scanner.umd.min.js',
-    'https://cdnjs.cloudflare.com/ajax/libs/qr-scanner/1.4.2/qr-scanner.worker.min.js'
+    'https://cdnjs.cloudflare.com/ajax/libs/qr-scanner/1.4.2/qr-scanner-worker.min.js'
 ];
 
 self.addEventListener('install', event => {

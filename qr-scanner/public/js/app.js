@@ -125,7 +125,6 @@ async function startScanner() {
     }
 }
 
-
 function stopScanner() {
     if (qrScanner) {
         qrScanner.stop();
