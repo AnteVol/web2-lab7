@@ -1,18 +1,15 @@
 {
   "name": "qr-scanner",
   "version": "1.0.0",
-  "main": "src/js/app.js",
+  "description": "QR Scanner PWA",
+  "main": "server.js",
   "scripts": {
-    "start": "http-server public",
-    "build": "echo 'Build step not defined'",
-    "test": "echo 'No tests defined'"
+    "start": "node server.js"
   },
   "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.21.2",
-    "qr-scanner": "^1.4.2"
+    "express": "^4.17.1"
   },
-  "devDependencies": {
-    "http-server": "^0.12.3"
+  "engines": {
+    "node": ">=14"
   }
 }
