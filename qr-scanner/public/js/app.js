@@ -15,8 +15,8 @@ const video = document.getElementById('videoElement');
 const scannedCodes = document.getElementById('scannedCodes');
 const offlineMessage = document.getElementById('offlineMessage');
 
-
 let animationId = null;
+let scanningBlocked = false; 
 
 function updateOnlineStatus() {
     if (navigator.onLine) {
@@ -105,6 +105,13 @@ function stopScanner() {
 }
 
 async function handleScan(result) {
+    if (scanningBlocked) return; 
+
+    scanningBlocked = true;
+    setTimeout(() => {
+        scanningBlocked = false; 
+    }, 1000);
+
     const scannedData = result.data;
     const scanTime = new Date().toLocaleString();
     
@@ -117,8 +124,6 @@ async function handleScan(result) {
     await registerSync();
     
     sendNotification(`Novi kod skeniran: ${scannedData}`);
-    setTimeout(() => {
-    }, 1000);
 }
 
 function displayScannedCodes() {
