@@ -49,8 +49,7 @@ function sendNotification(message) {
     if ('Notification' in window && Notification.permission === 'granted') {
         navigator.serviceWorker.ready.then(registration => {
             registration.showNotification('QR Skener', {
-                body: message,
-                icon: 'icons/icon-192x192.png'
+                body: message
             });
         });
     }

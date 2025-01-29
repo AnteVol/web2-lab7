@@ -5,8 +5,6 @@ const urlsToCache = [
     '/css/styles.css',
     '/js/app.js',
     '/manifest.json',
-    '/icons/icon-192x192.png',
-    '/favicon.ico',
     '/js/qr-scanner.umd.min.js',
     '/js/qr-scanner-worker.min.js',
 ];
@@ -59,9 +57,7 @@ self.addEventListener('sync', event => {
 // Push event
 self.addEventListener('push', event => {
     const options = {
-        body: event.data.text(),
-        icon: 'icons/icon-192x192.png',
-        badge: 'icons/icon-192x192.png'
+        body: event.data.text()
     };
 
     event.waitUntil(
