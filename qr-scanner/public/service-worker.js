@@ -4,6 +4,7 @@ const urlsToCache = [
     '/index.html',
     '/css/styles.css',
     '/js/app.js',
+    'icons/ikona.png',	
     '/manifest.json',
     '/js/qr-scanner.umd.min.js',
     '/js/qr-scanner-worker.min.js',
@@ -16,7 +17,6 @@ self.addEventListener('install', event => {
     );
 });
 
-// Activate event - brisanje starih cacheva
 self.addEventListener('activate', event => {
     event.waitUntil(
         caches.keys().then(keys => {
@@ -28,7 +28,6 @@ self.addEventListener('activate', event => {
     );
 });
 
-// Fetch event - strategija Cache First
 self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request)
@@ -45,7 +44,6 @@ self.addEventListener('fetch', event => {
     );
 });
 
-// Sync event
 self.addEventListener('sync', event => {
     if (event.tag === 'sync-scanned-codes') {
         event.waitUntil(
@@ -54,7 +52,6 @@ self.addEventListener('sync', event => {
     }
 });
 
-// Push event
 self.addEventListener('push', event => {
     const options = {
         body: event.data.text()

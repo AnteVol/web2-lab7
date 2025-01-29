@@ -18,7 +18,6 @@ const offlineMessage = document.getElementById('offlineMessage');
 
 let animationId = null;
 
-// Provjera online/offline statusa
 function updateOnlineStatus() {
     if (navigator.onLine) {
         offlineMessage.style.display = 'none';
@@ -35,7 +34,6 @@ function updateOnlineStatus() {
 window.addEventListener('online', updateOnlineStatus);
 window.addEventListener('offline', updateOnlineStatus);
 
-// Inicijalizacija notifikacija
 async function initNotifications() {
     if ('Notification' in window) {
         const permission = await Notification.requestPermission();
@@ -44,7 +42,6 @@ async function initNotifications() {
     return false;
 }
 
-// Slanje notifikacije
 function sendNotification(message) {
     if ('Notification' in window && Notification.permission === 'granted') {
         navigator.serviceWorker.ready.then(registration => {
@@ -55,7 +52,6 @@ function sendNotification(message) {
     }
 }
 
-// Background sync za pohranu skeniranih kodova
 async function registerSync() {
     if ('serviceWorker' in navigator && 'SyncManager' in window) {
         const registration = await navigator.serviceWorker.ready;
@@ -68,10 +64,8 @@ async function registerSync() {
     }
 }
 
-// Pokretanje skenera
 async function startScanner() {
     try {
-        // Make sure QrScanner is available (it should be from the UMD build)
         if (typeof QrScanner === 'undefined') {
             throw new Error('QR Scanner library not loaded');
         }
@@ -110,27 +104,21 @@ function stopScanner() {
     }
 }
 
-// Obrada skeniranog koda
 async function handleScan(result) {
     const scannedData = result.data;
     const scanTime = new Date().toLocaleString();
     
-    // Dodaj u localStorage
     const scans = JSON.parse(localStorage.getItem('scannedCodes') || '[]');
     scans.push({ data: scannedData, time: scanTime });
     localStorage.setItem('scannedCodes', JSON.stringify(scans));
     
-    // Prikaži na stranici
     displayScannedCodes();
     
-    // Registriraj background sync
     await registerSync();
     
-    // Pošalji notifikaciju
     sendNotification(`Novi kod skeniran: ${scannedData}`);
 }
 
-// Prikaz skeniranih kodova
 function displayScannedCodes() {
     const scans = JSON.parse(localStorage.getItem('scannedCodes') || '[]');
     scannedCodes.innerHTML = `
@@ -145,11 +133,9 @@ function displayScannedCodes() {
     `;
 }
 
-// Event listeneri
 startButton.addEventListener('click', startScanner);
 stopButton.addEventListener('click', stopScanner);
 
-// Inicijalno učitavanje
 displayScannedCodes();
 initNotifications();
 updateOnlineStatus();

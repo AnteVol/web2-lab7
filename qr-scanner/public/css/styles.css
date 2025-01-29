@@ -54,3 +54,18 @@ button:disabled {
         padding: 10px;
     }
 }
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.app-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background-size: cover;
+    background-position: center;
+}
