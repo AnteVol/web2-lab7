@@ -117,6 +117,8 @@ async function handleScan(result) {
     await registerSync();
     
     sendNotification(`Novi kod skeniran: ${scannedData}`);
+    setTimeout(() => {
+    }, 1000);
 }
 
 function displayScannedCodes() {
