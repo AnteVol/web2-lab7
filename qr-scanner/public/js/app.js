@@ -83,7 +83,7 @@ async function startScanner() {
                 returnDetailedScanResult: true,
                 highlightScanRegion: true,
                 highlightCodeOutline: true,
-                workerPath: 'https://cdnjs.cloudflare.com/ajax/libs/qr-scanner/1.4.2/qr-scanner-worker.min.js'
+                workerPath: '/js/qr-scanner-worker.min.js'
             }
         );
         
