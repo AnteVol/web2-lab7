@@ -69,11 +69,14 @@ async function registerSync() {
     }
 }
 
-
-
 // Pokretanje skenera
 async function startScanner() {
     try {
+        // Make sure QrScanner is available (it should be from the UMD build)
+        if (typeof QrScanner === 'undefined') {
+            throw new Error('QR Scanner library not loaded');
+        }
+
         qrScanner = new QrScanner(
             video,
             result => {
@@ -83,24 +86,13 @@ async function startScanner() {
                 returnDetailedScanResult: true,
                 highlightScanRegion: true,
                 highlightCodeOutline: true,
-                workerPath: '/js/qr-scanner-worker.min.js'
             }
         );
         
         await qrScanner.start();
-        
-        // Wait for video to be ready
-        video.addEventListener('loadedmetadata', () => {
-            console.log('Video metadata loaded');
-            video.play();
-        });
-
-        video.addEventListener('play', () => {
-            console.log('Video started playing');
-        });
-
         startButton.disabled = true;
         stopButton.disabled = false;
+
     } catch (error) {
         console.error('Greška pri pokretanju kamere:', error);
         alert('Nije moguće pristupiti kameri. Provjerite dozvoljavate li pristup kameri.');
